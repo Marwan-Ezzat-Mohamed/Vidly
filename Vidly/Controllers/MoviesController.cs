@@ -20,34 +20,6 @@ namespace Vidly.Controllers
         {
             _context.Dispose();
         }
-        public ViewResult New()
-        {
-            var genres = _context.Genres.ToList();
-            
-            var viewModel = new MovieFormViewModel
-            {
-                Genres=genres
-            };
-
-            return View("MovieForm", viewModel);
-        }
-
-        public ActionResult Edit(int id)
-        {
-            var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
-
-            if (movie == null)
-                return HttpNotFound();
-
-            var viewModel = new MovieFormViewModel
-            {
-                Movie = movie,
-                Genres = _context.Genres.ToList()
-            };
-
-            return View("MovieForm", viewModel);
-        }
-
 
         public ViewResult Index()
         {
@@ -69,28 +41,22 @@ namespace Vidly.Controllers
 
 
         // GET: Movies/Random
-        
-
-        [HttpPost]
-        public ActionResult Save(Movie movie)
+        public ActionResult Random()
         {
-            if (movie.Id == 0)
+            var movie = new Movie() { Name = "Shrek!" };
+            var customers = new List<Customer>
             {
-                movie.DateAdded = System.DateTime.Now;
-                _context.Movies.Add(movie);
-            }
-            else
+                new Customer { Name = "Customer 1" },
+                new Customer { Name = "Customer 2" }
+            };
+
+            var viewModel = new RandomMovieViewModel
             {
-                var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
-                movieInDb.Name = movie.Name;
-                movieInDb.GenreId = movie.GenreId;
-                movieInDb.NumberInStock = movie.NumberInStock;
-                movieInDb.ReleaseDate = movie.ReleaseDate;
-            }
+                Movie = movie,
+                Customers = customers
+            };
 
-            _context.SaveChanges();
-
-            return RedirectToAction("Index", "Movies");
+            return View(viewModel);
         }
     }
 }
