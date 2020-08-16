@@ -285,12 +285,13 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Movies\Random.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Customers\CustomerForm.cshtml" />
     <None Include="Views\Customers\Details.cshtml" />
     <None Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Customers\New.cshtml" />
+    <Content Include="Views\Movies\MovieForm.cshtml" />
     <None Include="Views\Movies\Index.cshtml" />
-    <Content Include="Views\Movies\NewMovie.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
